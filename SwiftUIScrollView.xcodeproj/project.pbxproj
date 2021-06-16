@@ -11,6 +11,8 @@
 		431EE73226F10EDE0016B7A3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431EE73126F10EDE0016B7A3 /* ContentView.swift */; };
 		431EE73426F10EDE0016B7A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 431EE73326F10EDE0016B7A3 /* Assets.xcassets */; };
 		431EE73726F10EDE0016B7A3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 431EE73626F10EDE0016B7A3 /* Preview Assets.xcassets */; };
+		431EE73F26F10EDE0016B7A3 /* CustomScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431EE73E26F10EDE0016B7A3 /* CustomScrollView.swift */; };
+		431EE74126F10EDE0016B7A3 /* LinearDragGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431EE74026F10EDE0016B7A3 /* LinearDragGesture.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +22,8 @@
 		431EE73326F10EDE0016B7A3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		431EE73626F10EDE0016B7A3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		431EE73826F10EDE0016B7A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		431EE73E26F10EDE0016B7A3 /* CustomScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomScrollView.swift; sourceTree = "<group>"; };
+		431EE74026F10EDE0016B7A3 /* LinearDragGesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinearDragGesture.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +57,8 @@
 			isa = PBXGroup;
 			children = (
 				431EE72F26F10EDE0016B7A3 /* SwiftUIScrollViewApp.swift */,
+				431EE73E26F10EDE0016B7A3 /* CustomScrollView.swift */,
+				431EE74026F10EDE0016B7A3 /* LinearDragGesture.swift */,
 				431EE73126F10EDE0016B7A3 /* ContentView.swift */,
 				431EE73326F10EDE0016B7A3 /* Assets.xcassets */,
 				431EE73826F10EDE0016B7A3 /* Info.plist */,
@@ -140,6 +146,8 @@
 			files = (
 				431EE73226F10EDE0016B7A3 /* ContentView.swift in Sources */,
 				431EE73026F10EDE0016B7A3 /* SwiftUIScrollViewApp.swift in Sources */,
+				431EE74126F10EDE0016B7A3 /* LinearDragGesture.swift in Sources */,
+				431EE73F26F10EDE0016B7A3 /* CustomScrollView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

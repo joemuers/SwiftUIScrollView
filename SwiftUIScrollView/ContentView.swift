@@ -2,15 +2,123 @@
 //  ContentView.swift
 //  SwiftUIScrollView
 //
-//  Created by joe muers on 16/06/2021.
-//
 
 import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        CustomScrollView(axis: .vertical, contentSize: 0) {
+            Group {
+                Text("abcjfkdlsa fjdksl;fjd l;fjdakl;fd sjak")
+                    .background(Color.red)
+                Text("def fdklsja")
+                    .background(Color.green)
+                Text("ghi fdjlsajfdsklf jdsa")
+                    .background(Color.red)
+                Text("jklfd sjklfdsjl")
+                    .background(Color.green)
+                Text("mnojfdklsjfdkslfj")
+                    .background(Color.red)
+                Text("abcjfkdlsa fjdksl;fjd l;fjdakl;fd sjak")
+                    .background(Color.red)
+                Text("def fdklsjafdklsa fjdsla;")
+                    .background(Color.green)
+                Text("ghi fdjlsajfdsklf jdsa")
+                    .background(Color.red)
+                Text("jklfd sjklfdsjl")
+                    .background(Color.green)
+                Text("mnojfdklsjfdkslfj")
+                    .background(Color.red)
+            }
+            Group {
+                Text("1111  abcjfkdlsa fjdksl;fjd l;fjdakl;fd sjak")
+                    .background(Color.red)
+                Text("def fdklsjafdklsa fjdsla;")
+                    .background(Color.green)
+                Text("ghi fdjlsajfdsklf jdsa")
+                    .background(Color.red)
+                Text("jklfd sjklfdsjl")
+                    .background(Color.green)
+                Text("mnojfdklsjfdkslfj")
+                    .background(Color.red)
+                Text("abcjfkdlsa fjdksl;fjd l;fjdakl;fd sjak")
+                    .background(Color.red)
+                Text("def fdklsjafdklsa fjdsla;")
+                    .background(Color.green)
+                Text("ghi fdjlsajfdsklf jdsa")
+                    .background(Color.red)
+                Text("jklfd sjklfdsjl")
+                    .background(Color.green)
+                Text("mnojfdklsjfdkslfj")
+                    .background(Color.red)
+            }
+            Group {
+                Text("22222    abcjfkdlsa fjdksl;fjd l;fjdakl;fd sjak")
+                    .background(Color.red)
+                Text("def fdklsjafdklsa fjdsla;")
+                    .background(Color.green)
+                Text("ghi fdjlsajfdsklf jdsa")
+                    .background(Color.red)
+                Text("jklfd sjklfdsjl")
+                    .background(Color.green)
+                Text("mnojfdklsjfdkslfj")
+                    .background(Color.red)
+                //                Text("abcjfkdlsa fjdksl;fjd l;fjdakl;fd sjak")
+                //                    .background(Color.red)
+                //                Text("def fdklsjafdklsa fjdsla;")
+                //                    .background(Color.green)
+                //                Text("ghi fdjlsajfdsklf jdsa")
+                //                    .background(Color.red)
+                //                Text("jklfd sjklfdsjl")
+                //                    .background(Color.green)
+                //                Text("mnojfdklsjfdkslfj")
+                //                    .background(Color.red)
+            }
+            Group {
+                Text("abcjfkdlsa fjdksl;fjd l;fjdakl;fd sjak")
+                    .background(Color.red)
+                Text("def fdklsjafdklsa fjdsla;")
+                    .background(Color.green)
+                Text("ghi fdjlsajfdsklf jdsa")
+                    .background(Color.red)
+                Text("jklfd sjklfdsjl")
+                    .background(Color.green)
+                Text("mnojfdklsjfdkslfj")
+                    .background(Color.red)
+                Text("abcjfkdlsa fjdksl;fjd l;fjdakl;fd sjak")
+                    .background(Color.red)
+                Text("def fdklsjafdklsa fjdsla;")
+                    .background(Color.green)
+                Text("ghi fdjlsajfdsklf jdsa")
+                    .background(Color.red)
+                Text("jklfd sjklfdsjl")
+                    .background(Color.green)
+                Text("mnojfdklsjfdkslfj")
+                    .background(Color.red)
+            }
+            Group {
+                Text("abcjfkdlsa fjdksl;fjd l;fjdakl;fd sjak")
+                    .background(Color.red)
+                Text("def fdklsjafdklsa fjdsla;")
+                    .background(Color.green)
+                Text("ghi fdjlsajfdsklf jdsa")
+                    .background(Color.red)
+                Text("jklfd sjklfdsjl")
+                    .background(Color.green)
+                Text("mnojfdklsjfdkslfj")
+                    .background(Color.red)
+                Text("abcjfkdlsa fjdksl;fjd l;fjdakl;fd sjak")
+                    .background(Color.red)
+                Text("def fdklsjafdklsa fjdsla;")
+                    .background(Color.green)
+                Text("ghi fdjlsajfdsklf jdsa")
+                    .background(Color.red)
+                Text("jklfd sjklfdsjl")
+                    .background(Color.green)
+                Text("mnojfdklsjfdkslfj")
+                    .background(Color.red)
+            }
+        }
     }
 }
 
