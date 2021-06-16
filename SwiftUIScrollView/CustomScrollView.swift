@@ -5,6 +5,10 @@
 
 import SwiftUI
 
+/// Purpose of this class is for the cases where we need scrollable behaviour but require more customisation than the
+/// SwiftUI native ScrollView allows.
+/// Note that it doesn't have scroll bars or inertial damping behaviour.
+/// If you don't require such customisation then please prefer the regular ScrollView.
 struct CustomScrollView<Content: View>: View {
     
     private struct Constants {
@@ -27,7 +31,7 @@ struct CustomScrollView<Content: View>: View {
     @State private var dragOffset: CGFloat = 0
     @State private var baseOffset: CGFloat = 0
     
-    init(axis: Axis, contentSize: CGFloat, @ViewBuilder content: @escaping () -> Content) {
+    init(axis: Axis, @ViewBuilder content: @escaping () -> Content) {
         self.axis = axis
         self.content = content
     }
@@ -95,9 +99,14 @@ struct CustomScrollView<Content: View>: View {
     private func offset(from translation: CGFloat, geometry: GeometryProxy) -> CGFloat {
         
         let translationPosition = translation + self.baseOffset
+        let maxScroll = self.maxScrollLength(geo: geometry)
         
-        if translationPosition > 0 ||  -(translationPosition) > self.maxScrollLength(geo: geometry){
-            return translation / Constants.offEdgeDampingFactor
+        if translationPosition > 0 {
+            let diff = translationPosition
+            return (translation - diff) + (diff / Constants.offEdgeDampingFactor)
+        } else if  -(translationPosition) > maxScroll {
+            let diff = translationPosition + maxScroll
+            return (translation - diff) + (diff / Constants.offEdgeDampingFactor)
         }
         
         return translation

@@ -7,7 +7,7 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        CustomScrollView(axis: .vertical, contentSize: 0) {
+        CustomScrollView(axis: .vertical) {
             Group {
                 Text("abcjfkdlsa fjdksl;fjd l;fjdakl;fd sjak")
                     .background(Color.red)
