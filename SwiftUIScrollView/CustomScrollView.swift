@@ -92,18 +92,12 @@ struct CustomScrollView<Content: View>: View {
         }
     }
     
-    
-    
     private func offset(from translation: CGFloat, geometry: GeometryProxy) -> CGFloat {
         
         let translationPosition = translation + self.baseOffset
         
-        if translationPosition > 0 {
-            print("damping 1")
-            return translation /// Constants.offEdgeDampingFactor
-        } else if -(translationPosition) > self.maxScrollLength(geo: geometry){
-            print("damping 2")
-            return translation /// Constants.offEdgeDampingFactor
+        if translationPosition > 0 ||  -(translationPosition) > self.maxScrollLength(geo: geometry){
+            return translation / Constants.offEdgeDampingFactor
         }
         
         return translation
@@ -114,7 +108,7 @@ struct CustomScrollView<Content: View>: View {
             self.dragOffset = 0
         }
         
-        let offsetResult = self.baseOffset + self.offset(from: translation, geometry: geo)
+        let offsetResult = self.baseOffset + translation
         guard offsetResult < 0 else {
             self.baseOffset = 0
             return
