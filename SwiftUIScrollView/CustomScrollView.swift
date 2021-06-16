@@ -15,10 +15,28 @@ struct CustomScrollView<Content: View>: View {
         static var offEdgeDampingFactor: CGFloat { 6 }
     }
     
+    private struct ContentSize: Equatable {
+        var bounds: CGSize? = nil
+        let isVertical: Bool
+    }
+    
     private struct ContentLengthKey: PreferenceKey {
-        static var defaultValue: CGFloat { 0 }
-        static func reduce(value: inout Value, nextValue: () -> Value) {
-            value = value + nextValue()
+        static var defaultValue: ContentSize { ContentSize(isVertical: true) }
+        
+        static func reduce(value: inout ContentSize, nextValue: () -> ContentSize) {
+            guard let current = value.bounds else {
+                value.bounds = nextValue().bounds
+                return
+            }
+            if let next = nextValue().bounds {
+                if value.isVertical {
+                    value.bounds = CGSize(width: max(current.width, next.width),
+                                          height: current.height + next.height)
+                } else {
+                    value.bounds = CGSize(width: current.width + next.width,
+                                          height: max(current.height, next.height))
+                }
+            }
         }
     }
     
@@ -27,11 +45,15 @@ struct CustomScrollView<Content: View>: View {
     private let axis: Axis
     private let content: () -> Content
     
-    @State private var contentLength: CGFloat = 0
+    @State private var contentSize: CGSize = .zero
+    private var contentLength: CGFloat {
+        return self.isAxisVertical ? self.contentSize.height : self.contentSize.width
+    }
     @State private var dragOffset: CGFloat = 0
     @State private var baseOffset: CGFloat = 0
     
-    init(axis: Axis, @ViewBuilder content: @escaping () -> Content) {
+    init(_ axis: Axis = .vertical,
+         @ViewBuilder content: @escaping () -> Content) {
         self.axis = axis
         self.content = content
     }
@@ -40,7 +62,10 @@ struct CustomScrollView<Content: View>: View {
         GeometryReader { geo in
             
             self.contentHolderView(geo: geo)
-                .onPreferenceChange(ContentLengthKey.self) { self.contentLength = $0 }
+                .onPreferenceChange(ContentLengthKey.self) {
+                    guard let bounds = $0.bounds else { return }
+                    self.contentSize = bounds
+                }
                 .offset(x: self.isAxisVertical ? 0 : self.contentOffset,
                         y: self.isAxisVertical ? self.contentOffset : 0)
                 .animation(.interactiveSpring(), value: self.dragOffset)
@@ -50,12 +75,15 @@ struct CustomScrollView<Content: View>: View {
                 .clipped()
                 .linearDragGesture(self.axis) { translation in
                     
-                    self.dragOffset = self.offset(from: translation, geometry: geo)
+                    self.dragOffset = self.dragOffset(from: translation, geometry: geo)
                     
                 } onEnded: { translation, _ in
                     self.onDragEnded(translation: translation, geo: geo)
                 }
         }
+        .frame(maxWidth: self.isAxisVertical ? self.contentSize.width : nil,
+               maxHeight: self.isAxisVertical ? nil : self.contentSize.height)
+        .clipped()
     }
     
     private var isAxisVertical: Bool {
@@ -81,7 +109,8 @@ struct CustomScrollView<Content: View>: View {
                         .fixedSize(horizontal: true, vertical: true)
                         .background(
                             GeometryReader { proxy in
-                                Color.clear.preference(key: ContentLengthKey.self, value: proxy.size.width)
+                                Color.clear.preference(key: ContentLengthKey.self,
+                                                       value: ContentSize(bounds: proxy.size, isVertical: false))
                             })
                 }
             case .vertical:
@@ -90,13 +119,14 @@ struct CustomScrollView<Content: View>: View {
                         .fixedSize(horizontal: true, vertical: true)
                         .background(
                             GeometryReader { proxy in
-                                Color.clear.preference(key: ContentLengthKey.self, value: proxy.size.height)
+                                Color.clear.preference(key: ContentLengthKey.self,
+                                                       value: ContentSize(bounds: proxy.size, isVertical: true))
                             })
                 }
         }
     }
     
-    private func offset(from translation: CGFloat, geometry: GeometryProxy) -> CGFloat {
+    private func dragOffset(from translation: CGFloat, geometry: GeometryProxy) -> CGFloat {
         
         let translationPosition = translation + self.baseOffset
         let maxScroll = self.maxScrollLength(geo: geometry)
